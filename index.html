@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checklist Plus - 프로젝트 초대</title>
+  <title>Checklist Plus - Project Invitation</title>
 
-  <!-- ★ 카카오톡 / 메신저 미리보기 카드 (Open Graph) 설정 ★ -->
+  <!-- Open Graph (미리보기 카드) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Checklist Plus - 프로젝트 초대">
-  <meta property="og:description" content="함께 할 일을 관리해 보세요! 링크를 눌러 프로젝트에 참여하세요.">
+  <meta property="og:title" content="Checklist Plus - Project Invitation">
+  <meta property="og:description" content="Collaborate on checklists and tasks together!">
   <meta property="og:image" content="https://checklist.mono-frame.com/app_logo.png">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="800">
   <meta property="og:url" content="https://checklist.mono-frame.com/">
 
-  <!-- 트위터 / 기타 플랫폼 카드 지원 -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Checklist Plus - 프로젝트 초대">
-  <meta name="twitter:description" content="함께 할 일을 관리해 보세요!">
+  <meta name="twitter:title" content="Checklist Plus - Project Invitation">
+  <meta name="twitter:description" content="Collaborate on checklists and tasks together!">
   <meta name="twitter:image" content="https://checklist.mono-frame.com/app_logo.png">
 
   <style>
@@ -77,29 +77,41 @@
     }
     .btn-secondary {
       background-color: transparent;
-      color: #64FFDA;
-      border: 1px solid #64FFDA;
+      color: #00E5BC;
+      border: 1px solid #00E5BC;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <!-- 웹 페이지 내부에도 앱 아이콘 노출 -->
     <img src="app_logo.png" alt="Checklist Plus" class="app-icon" onerror="this.style.display='none'">
     
-    <div><span class="badge">유효시간: 6시간</span></div>
-    <h1>체크리스트 협업 초대</h1>
-    <p>Checklist Plus 앱으로 이동하여 프로젝트에 참여합니다.<br>앱이 설치되지 않은 경우 스토어로 이동합니다.</p>
+    <div><span id="badgeText" class="badge">Valid for 6 hours</span></div>
+    <h1 id="titleText">Collaborative Checklist Invite</h1>
+    <p id="descText">Open Checklist Plus to join this project.<br>If the app is not installed, you will be redirected to the store.</p>
     
-    <a id="openAppBtn" class="btn" href="#">앱으로 열기</a>
-    <a id="storeBtn" class="btn btn-secondary" href="#">스토어에서 앱 다운로드</a>
+    <a id="openAppBtn" class="btn" href="#">Open in App</a>
+    <a id="storeBtn" class="btn btn-secondary" href="#">Download App from Store</a>
   </div>
 
   <script>
+    // 브라우저 언어 감지 (한국어면 ko, 그 외는 모두 영문 기본)
+    const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    const isKorean = userLang.startsWith('ko');
+
+    if (isKorean) {
+      document.title = "Checklist Plus - 프로젝트 초대";
+      document.getElementById('badgeText').innerText = "유효시간: 6시간";
+      document.getElementById('titleText').innerText = "체크리스트 협업 초대";
+      document.getElementById('descText').innerHTML = "Checklist Plus 앱으로 이동하여 프로젝트에 참여합니다.<br>앱이 설치되지 않은 경우 스토어로 이동합니다.";
+      document.getElementById('openAppBtn').innerText = "앱으로 열기";
+      document.getElementById('storeBtn').innerText = "스토어에서 앱 다운로드";
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
 
-    const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.mono_frame.checklistplus";
+    const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.monoframe.checklistplus";
     const APP_STORE_URL = "https://apps.apple.com/app/checklist-plus/id000000000";
 
     const isAndroid = /Android/i.test(navigator.userAgent);
@@ -113,7 +125,7 @@
     document.getElementById('openAppBtn').href = appDeepLink;
     document.getElementById('storeBtn').href = storeUrl;
 
-    // 모바일 기기에서 접속 시 즉시 앱 열기 시도 -> 1.5초 후 반응 없으면 스토어로 자동 이동
+    // 모바일 기기 접속 시 딥링크 자동 호출 -> 1.5초 후 반응 없으면 스토어로 이동
     if (isAndroid || isIOS) {
       window.location.href = appDeepLink;
 
