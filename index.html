@@ -4,6 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checklist Plus - 프로젝트 초대</title>
+
+  <!-- ★ 카카오톡 / 메신저 미리보기 카드 (Open Graph) 설정 ★ -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Checklist Plus - 프로젝트 초대">
+  <meta property="og:description" content="함께 할 일을 관리해 보세요! 링크를 눌러 프로젝트에 참여하세요.">
+  <meta property="og:image" content="https://checklist.mono-frame.com/app_logo.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:url" content="https://checklist.mono-frame.com/">
+
+  <!-- 트위터 / 기타 플랫폼 카드 지원 -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Checklist Plus - 프로젝트 초대">
+  <meta name="twitter:description" content="함께 할 일을 관리해 보세요!">
+  <meta name="twitter:image" content="https://checklist.mono-frame.com/app_logo.png">
+
   <style>
     body {
       background-color: #1A1F26;
@@ -26,6 +42,13 @@
       max-width: 400px;
       width: 100%;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     }
     .badge {
       display: inline-block;
@@ -61,7 +84,10 @@
 </head>
 <body>
   <div class="card">
-    <div class="badge">유효시간: 6시간</div>
+    <!-- 웹 페이지 내부에도 앱 아이콘 노출 -->
+    <img src="app_logo.png" alt="Checklist Plus" class="app-icon" onerror="this.style.display='none'">
+    
+    <div><span class="badge">유효시간: 6시간</span></div>
     <h1>체크리스트 협업 초대</h1>
     <p>Checklist Plus 앱으로 이동하여 프로젝트에 참여합니다.<br>앱이 설치되지 않은 경우 스토어로 이동합니다.</p>
     
